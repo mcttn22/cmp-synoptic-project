@@ -40,7 +40,7 @@ Start web server with:
 - ```
   mvn spring-boot:run
   ```
-- Website will then be hosted at ```http://localhost:8000```
+- Website will then be hosted at ```http://localhost:8080```
 
 ## Development
 
