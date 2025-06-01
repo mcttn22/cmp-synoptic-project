@@ -1,3 +1,7 @@
+[![CI/CD](https://github.com/mcttn22/cmp-synoptic-project/actions/workflows/main.yml/badge.svg)](https://github.com/mcttn22/cmp-synoptic-project/actions/workflows/main.yml)
+[![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.java.com/en/)
+[![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/)
+
 # CMP Synoptic Project
 
 ## Installation
@@ -30,7 +34,20 @@
       git config user.email {Your email};
       ```
 
+## Usage
+
+Start web server with:
+- ```
+  mvn spring-boot:run
+  ```
+- Website will then be hosted at ```http://localhost:8000```
+
 ## Development
+
+Run tests with:
+- ```
+  mvn test
+  ```
 
 General:
 - Use ```git status``` to see the current status of your local repository (changes, what branch you're on etc)
