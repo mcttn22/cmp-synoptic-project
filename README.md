@@ -7,8 +7,8 @@
 
 1. Install necessary tools:
    - Install git:
-    - Download and run installer from <a href="https://git-scm.com/downloads/win">here</a>
-    - Can leave all options as defaults
+     - Download and run installer from <a href="https://git-scm.com/downloads/win">here</a>
+     - Can leave all options as defaults
 
    - Install OpenSSL:
      - Download and run installer from <a href="https://slproweb.com/products/Win32OpenSSL.html">here</a>
@@ -37,7 +37,7 @@
       - Click "New" then paste the installation directory of PostgreSQL from earlier (Most likely "C:\Program Files\PostgreSQL\17\bin\")
       - Click "New" then paste the installation directory of OpenSSL from earlier (Most likely "C:\Program Files\OpenSSL-Win64\bin\")
       - Click "New" then browse to find the location of the bin folder inside where we extracted Maven to in "C:\Program Files\Maven\"
-      - Close the system environment variables editor windows
+      - Select "OK" to close the system environment variables editor windows
 
 2. Create a personal access token:
     - Go to profile picture -> Settings -> Developer Settings -> Personal access tokens -> Tokens (classic) -> Generate new token -> Generate new token (classic)
@@ -45,7 +45,7 @@
     - Select the repo checkbox
     - Save the token with a password manager
 
-3. Open powershell and move to a location to clone the repository with the ```cd``` command
+3. Open PowerShell and move to a location to clone the repository with the ```cd``` command
 
 4. Clone the Repository with the following (replacing curly braces and their contents):
     - ```
