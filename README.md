@@ -74,7 +74,7 @@
 
 7. Setup the database with:
    - ```psql -U postgres postgres```
-   - Once in the command line interface, enter ```\i setup_database.sql```
+   - Once in the command line interface, enter ```\i SQL_DDL.sql```
    - Then enter ```COMMIT;``` to commit the changes
    - Then enter ```\q``` to exit the command line interface
 
