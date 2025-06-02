@@ -1,6 +1,6 @@
 ### Todo
 
 - Backend
-  - Database integration
+  - Javadoc commenting
   - Security (HTTPS)~
 
