@@ -10,12 +10,12 @@
      - Download and run installer from <a href="https://git-scm.com/downloads/win">here</a>
      - Can leave all options as defaults
 
+   - Install Java Development Kit:
+     - Download and run installer from <a href="https://www.oracle.com/uk/java/technologies/downloads/#jdk24-windows">here</a>
+
    - Install OpenSSL:
      - Download and run installer from <a href="https://slproweb.com/products/Win32OpenSSL.html">here</a>
      - Make note of the "Installation Directory" it mentions
-
-   - Install Java Development Kit:
-     - Download and run installer from <a href="https://www.oracle.com/uk/java/technologies/downloads/#jdk24-windows">here</a>
 
    - Install Maven:
      - Download binary zip archive from <a href="https://maven.apache.org/download.cgi">here</a>
