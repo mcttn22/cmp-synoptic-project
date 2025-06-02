@@ -3,51 +3,86 @@
 
 # CMP Synoptic Project
 
-## Installation
+## Installation guide for Windows
 
-1. Create a personal access token:
+1. Install necessary tools:
+   - Install git:
+    - Download and run installer from <a href="https://git-scm.com/downloads/win">here</a>
+    - Can leave all options as defaults
 
+   - Install OpenSSL:
+     - Download and run installer from <a href="https://slproweb.com/products/Win32OpenSSL.html">here</a>
+     - Make note of the "Installation Directory" it mentions
+
+   - Install Java Development Kit:
+     - Download and run installer from <a href="https://www.oracle.com/uk/java/technologies/downloads/#jdk24-windows">here</a>
+
+   - Install Maven:
+     - Download binary zip archive from <a href="https://maven.apache.org/download.cgi">here</a>
+     - Open file explorer and create a folder called "Maven" in "C:\Program Files\"
+     - Extract the zip archive to the created Maven folder
+
+   - Install PostgresSQL:
+     - Download and run installer from <a href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads">here</a>
+     - Make note of the "Installation Directory" it mentions
+     - Untick "Stack Builder" from selected components to install
+     - Provide a password for the postgres user (just use something simple like "password") and make note of it
+     - Leave the port number
+     - Select en-GB locale
+
+    - Configure PATH environment variable:
+      - Type and open "Edit the system environment variables" into the Windows search bar
+      - Click "Environment Variables" at the bottom
+      - Select the Path variable in the System variables table and click "Edit"
+      - Click "New" then paste the installation directory of PostgreSQL from earlier (Most likely "C:\Program Files\PostgreSQL\17\bin\")
+      - Click "New" then paste the installation directory of OpenSSL from earlier (Most likely "C:\Program Files\OpenSSL-Win64\bin\")
+      - Click "New" then browse to find the location of the bin folder inside where we extracted Maven to in "C:\Program Files\Maven\"
+      - Close the system environment variables editor windows
+
+2. Create a personal access token:
     - Go to profile picture -> Settings -> Developer Settings -> Personal access tokens -> Tokens (classic) -> Generate new token -> Generate new token (classic)
     - Enter a note to remember it (eg: "repo")
     - Select the repo checkbox
     - Save the token with a password manager
 
-2. Open a terminal and move to a location to clone the repository with the ```cd``` command
+3. Open powershell and move to a location to clone the repository with the ```cd``` command
 
-3. Clone the Repository with:
-
+4. Clone the Repository with the following (replacing curly braces and their contents):
     - ```
       git clone https://{Your GitHub username}:{Your personal access token}@github.com/mcttn22/cmp-synoptic-project.git
       ```
 
-4. Enter the project directory with:
-
+5. Enter the project directory with:
     - ```
       cd cmp-synoptic-project
       ```
 
-5. Configure your user details with:
-
+5. Configure your user details with the following (replacing curly braces and their contents):
     - ```
       git config user.name "{Your name}";
       git config user.email {Your email};
       ```
 
-6. Create keystore for HTTPS with:
-   - Use Git Bash
+6. Create keystore for HTTPS with the following: *Note: Copy one command at a time*
    - ```
      openssl req -x509 -newkey rsa:2048 -keyout keytmp.pem -out cert.pem -days 365 -nodes;
      openssl rsa -in keytmp.pem -out key.pem;
      openssl pkcs12 -export -out src/main/resources/keystore.p12 -inkey key.pem -in cert.pem
      ```
-   - You will be prompted to fill in information for the certificate and a password for the key store, see the below demo:
+   - You will be prompted to fill in information for the certificate and a password for the key store (just use something simple like "password"), make note of the keystore password. See the below demo:
      ![OpenSSL Demo](https://github.com/mcttn22/cmp-synoptic-project/blob/main/doc/openssl-demo.png?raw=true)
 
-7. Add a src/main/resources/application.properties file with the following contents:
+7. Setup the database with:
+   - ```psql -U postgres postgres```
+   - Once in the command line interface, enter ```\i setup_database.sql```
+   - Then enter ```COMMIT;``` to commit the changes
+   - Then enter ```\q``` to exit the command line interface
+
+8. Open the project directory with a text editor (e.g., VS Code) and save a file called application.properties to src/main/resources/, with the following contents (replacing curly braces and their contents):
    - ```
      spring.application.name=synopticproject
-     spring.datasource.url=jdbc:postgresql://localhost:5432/{Database Name}
-     spring.datasource.username={Database Username}
+     spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
+     spring.datasource.username=postgres
      spring.datasource.password={Database Password}
      server.ssl.key-alias=1
      server.ssl.key-store=classpath:keystore.p12
@@ -56,8 +91,6 @@
      ```
 
 ## Usage
-
-Ensure the PostgreSQL server is running and the database is setup (if not run the SQL in setup_database.sql)
 
 Start the web server with:
 - ```
