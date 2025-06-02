@@ -33,12 +33,26 @@
       git config user.email {Your email};
       ```
 
-6. Add a src/main/resources/application.properties file with the following contents:
+6. Create keystore for HTTPS with:
+   - Use Git Bash
+   - ```
+     openssl req -x509 -newkey rsa:2048 -keyout keytmp.pem -out cert.pem -days 365 -nodes;
+     openssl rsa -in keytmp.pem -out key.pem;
+     openssl pkcs12 -export -out src/main/resources/keystore.p12 -inkey key.pem -in cert.pem
+     ```
+   - You will be prompted to fill in information for the certificate and a password for the key store, see the below demo:
+     ![OpenSSL Demo](https://github.com/mcttn22/cmp-synopticproject/blob/main/doc/openssl-demo.png?raw=true)
+
+7. Add a src/main/resources/application.properties file with the following contents:
    - ```
      spring.application.name=synopticproject
      spring.datasource.url=jdbc:postgresql://localhost:5432/{Database Name}
      spring.datasource.username={Database Username}
      spring.datasource.password={Database Password}
+     server.ssl.key-alias=1
+     server.ssl.key-store=classpath:keystore.p12
+     server.ssl.key-store-password={Keystore Password}
+     server.ssl.key-store-type=PKCS12
      ```
 
 ## Usage
@@ -49,7 +63,8 @@ Start the web server with:
 - ```
   mvn spring-boot:run
   ```
-- The website will then be hosted at ```http://localhost:8080```
+- The website will then be hosted at ```https://localhost:8080```
+  *Note: You will have to click through some options to accept the risk that we're self certificated*
 
 ## Development
 
@@ -74,3 +89,4 @@ Extra:
 - Undo the last commit with ```git reset --soft HEAD~1```
 - Solve merge conflicts by editing the conflicted files and removing one of the conflicting blocks
 - You could use conventional commit messages like "feat: ..." or "chore: ..." etc, see [here](https://www.conventionalcommits.org/en/v1.0.0/) for more info
+
