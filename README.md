@@ -34,7 +34,13 @@
       git config user.email {Your email};
       ```
 
-6. Specify the missing values in the src/main/resources/application.properties file
+6. Add src/main/resources/application.properties file with following contents:
+   - ```
+     spring.application.name=synopticproject
+     spring.datasource.url=jdbc:postgresql://localhost:5432/{Database Name}
+     spring.datasource.username={Database Username}
+     spring.datasource.password={Database Password}
+     ```
 
 ## Usage
 
