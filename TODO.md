@@ -1,5 +1,2 @@
 ### Todo
 
-- Backend
-  - Security (HTTPS)~
-
