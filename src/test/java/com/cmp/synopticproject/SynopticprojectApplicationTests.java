@@ -8,10 +8,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+/**
+ * Class of unit tests for application.
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 public class SynopticprojectApplicationTests {
 
+	// Simulates app behaviour for testing
 	@Autowired
 	private MockMvc mockMvc;
 
