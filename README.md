@@ -33,7 +33,7 @@
       git config user.email {Your email};
       ```
 
-6. Add src/main/resources/application.properties file with following contents:
+6. Add a src/main/resources/application.properties file with the following contents:
    - ```
      spring.application.name=synopticproject
      spring.datasource.url=jdbc:postgresql://localhost:5432/{Database Name}
@@ -43,13 +43,13 @@
 
 ## Usage
 
-Ensure the PostgreSQL server is running and the databse is setup (if not run the SQL in setup_database.sql)
+Ensure the PostgreSQL server is running and the database is setup (if not run the SQL in setup_database.sql)
 
-Start web server with:
+Start the web server with:
 - ```
   mvn spring-boot:run
   ```
-- Website will then be hosted at ```http://localhost:8080```
+- The website will then be hosted at ```http://localhost:8080```
 
 ## Development
 
