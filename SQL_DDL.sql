@@ -22,7 +22,7 @@ CREATE TABLE resident(
 CREATE TABLE farmer(
 	farmerID INTEGER PRIMARY KEY,
 	resID INTEGER,
-	FOREIGN KEY (resID) REFERENCES resident);
+	FOREIGN KEY (resID) REFERENCES resident ON DELETE CASCADE);
 
 -- Adding a toilet
 CREATE OR REPLACE FUNCTION add_toilet_func()
