@@ -34,13 +34,13 @@
       - Type and open "Edit the system environment variables" into the Windows search bar
       - Click "Environment Variables" at the bottom
       - Select the Path variable in the System variables table and click "Edit"
-      - Click "New" then paste the installation directory of PostgreSQL from earlier (Most likely "C:\Program Files\PostgreSQL\17\bin\")
       - Click "New" then paste the installation directory of OpenSSL from earlier (Most likely "C:\Program Files\OpenSSL-Win64\bin\")
+      - Click "New" then paste the installation directory of PostgreSQL from earlier (Most likely "C:\Program Files\PostgreSQL\17\bin\")
       - Click "New" then browse to find the location of the bin folder inside where we extracted Maven to in "C:\Program Files\Maven\"
       - Select "OK" to close the system environment variables editor windows
 
 2. Create a personal access token:
-    - Go to profile picture -> Settings -> Developer Settings -> Personal access tokens -> Tokens (classic) -> Generate new token -> Generate new token (classic)
+    - On GitHub, go to profile picture -> Settings -> Developer Settings -> Personal access tokens -> Tokens (classic) -> Generate new token -> Generate new token (classic)
     - Enter a note to remember it (eg: "repo")
     - Select the repo checkbox
     - Save the token with a password manager
@@ -63,13 +63,13 @@
       git config user.email {Your email};
       ```
 
-6. Create keystore for HTTPS with the following: *Note: Copy one command at a time*
+6. Create a keystore for HTTPS with the following: *Note: Copy one command at a time*
    - ```
      openssl req -x509 -newkey rsa:2048 -keyout keytmp.pem -out cert.pem -days 365 -nodes;
      openssl rsa -in keytmp.pem -out key.pem;
      openssl pkcs12 -export -out src/main/resources/keystore.p12 -inkey key.pem -in cert.pem
      ```
-   - You will be prompted to fill in information for the certificate and a password for the key store (just use something simple like "password"), make note of the keystore password. See the below demo:
+   - You will be prompted to fill in information for the certificate and a password for the keystore (just use something simple like "password"), make note of the keystore password. See the below demo:
      ![OpenSSL Demo](https://github.com/mcttn22/cmp-synoptic-project/blob/main/doc/openssl-demo.png?raw=true)
 
 7. Setup the database with:
