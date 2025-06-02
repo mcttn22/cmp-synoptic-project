@@ -41,7 +41,7 @@
      openssl pkcs12 -export -out src/main/resources/keystore.p12 -inkey key.pem -in cert.pem
      ```
    - You will be prompted to fill in information for the certificate and a password for the key store, see the below demo:
-     ![OpenSSL Demo](https://github.com/mcttn22/cmp-synopticproject/blob/main/doc/openssl-demo.png?raw=true)
+     ![OpenSSL Demo](https://github.com/mcttn22/cmp-synoptic-project/blob/main/doc/openssl-demo.png?raw=true)
 
 7. Add a src/main/resources/application.properties file with the following contents:
    - ```
