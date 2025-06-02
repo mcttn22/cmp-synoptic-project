@@ -34,7 +34,11 @@
       git config user.email {Your email};
       ```
 
+6. Specify the missing values in the src/main/resources/application.properties file
+
 ## Usage
+
+Ensure the PostgreSQL server is running and the databse is setup (if not run the SQL in setup_database.sql)
 
 Start web server with:
 - ```
