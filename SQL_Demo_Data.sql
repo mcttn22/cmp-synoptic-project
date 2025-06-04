@@ -1,4 +1,4 @@
-INSERT INTO toiletblock
+INSERT INTO toilet_block
 VALUES
 (101, '123 Makers Street, Makers Valley, Johannesburg', 'Open', 0),
 (202, '452 The Avenue, Makers Valley, Johannesburg', 'Closed', 0),
