@@ -1,5 +1,5 @@
 ### Todo
 
 - Backend
-  - Match ORM with new SQL DDL
+  - Update routing to new static and template files
 
