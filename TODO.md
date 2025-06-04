@@ -1,5 +1,5 @@
 ### Todo
 
 - Backend
-  - Update routing to new static and template files
+  - Provide necessary routing and query functions
 
