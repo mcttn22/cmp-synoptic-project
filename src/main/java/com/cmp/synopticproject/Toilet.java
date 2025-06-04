@@ -9,15 +9,32 @@ import jakarta.persistence.Id;
  */
 @Entity
 public class Toilet {
-	private @Id @GeneratedValue Integer id;
-	private String location;	
+	private @Id @GeneratedValue Integer toiletId;
+	private int blockId;
+	private String toiletStatus;
 
-	public String getLocation() {
-		return location;
+	public int getToiletId () {
+		return this.toiletId;
 	}
 
-	public void setLocation (String location) {
-		this.location = location;
+	public void setToiletId (int id) {
+		this.toiletId = toiletId;
+	}
+
+	public int getBlockId () {
+		return this.blockId;
+	}
+
+	public void setBlockId (int blockId) {
+		this.blockId = blockId;
+	}
+
+	public String getToiletStatus () {
+		return this.toiletStatus;
+	}
+
+	public void setToiletStatus (String toiletStatus) {
+		this.toiletStatus = toiletStatus;
 	}
 }
 

@@ -10,10 +10,19 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class ApiController {
+	private ToiletBlockRepository toiletBlockRepository;
 	private ToiletRepository toiletRepository;
+	private ResidentRepository residentRepository;
+	private FarmerRepository farmerRepository;
 
-	public ApiController(ToiletRepository toiletRepository) {
+	public ApiController(ToiletBlockRepository toiletBlockRepository,
+					     ToiletRepository toiletRepository,
+						 ResidentRepository residentRepository,
+						 FarmerRepository farmerRepository) {
+		this.toiletBlockRepository = toiletBlockRepository;
 		this.toiletRepository = toiletRepository;
+		this.residentRepository = residentRepository;
+		this.farmerRepository = farmerRepository;
 	}
 
 	/**
