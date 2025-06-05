@@ -12,13 +12,13 @@ public class ToiletBlock {
 	private @Id @GeneratedValue Integer blockId;
 	private String blockAddress;
 	private String blockStatus;
-	private Integer toiletCount;
+	private int toiletCount;
 
-	public int getBlockId () {
+	public Integer getBlockId () {
 		return this.blockId;
 	}
 
-	public void setBlockId (int blockId) {
+	public void setBlockId (Integer blockId) {
 		this.blockId = blockId;
 	}
 

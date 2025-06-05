@@ -10,21 +10,21 @@ import jakarta.persistence.Id;
 @Entity
 public class Farmer {
 	private @Id @GeneratedValue Integer farmerId;
-	private int resId;
+	private Integer resId;
 
-	public int getFarmerId () {
+	public Integer getFarmerId () {
 		return this.farmerId;
 	}
 
-	public void setFarmerId (int farmerId) {
+	public void setFarmerId (Integer farmerId) {
 		this.farmerId = farmerId;
 	}
 
-	public int getResId () {
+	public Integer getResId () {
 		return this.resId;
 	}
 
-	public void setResId (int resId) {
+	public void setResId (Integer resId) {
 		this.resId = resId;
 	}
 }

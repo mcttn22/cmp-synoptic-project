@@ -15,11 +15,11 @@ public class Resident {
 	private String fullName;
 	private String address;
 
-	public int getResId () {
+	public Integer getResId () {
 		return this.resId;
 	}
 
-	public void setResId (int resId) {
+	public void setResId (Integer resId) {
 		this.resId = resId;
 	}
 

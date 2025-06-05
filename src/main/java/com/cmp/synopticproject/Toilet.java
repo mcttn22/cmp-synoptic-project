@@ -10,22 +10,22 @@ import jakarta.persistence.Id;
 @Entity
 public class Toilet {
 	private @Id @GeneratedValue Integer toiletId;
-	private int blockId;
+	private Integer blockId;
 	private String toiletStatus;
 
-	public int getToiletId () {
+	public Integer getToiletId () {
 		return this.toiletId;
 	}
 
-	public void setToiletId (int id) {
+	public void setToiletId (Integer id) {
 		this.toiletId = toiletId;
 	}
 
-	public int getBlockId () {
+	public Integer getBlockId () {
 		return this.blockId;
 	}
 
-	public void setBlockId (int blockId) {
+	public void setBlockId (Integer blockId) {
 		this.blockId = blockId;
 	}
 
