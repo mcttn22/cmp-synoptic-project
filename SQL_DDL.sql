@@ -1,26 +1,26 @@
 -- Table Definition
 CREATE TABLE toilet_block(
-	block_id INTEGER PRIMARY KEY,
+	block_id SERIAL PRIMARY KEY,
 	block_address VARCHAR(100) NOT NULL,
 	block_status VARCHAR(15) DEFAULT 'Closed',
 	toilet_count INTEGER DEFAULT 0,
 	CHECK (toilet_count >= 0));
 
 CREATE TABLE toilet(
-	toilet_id INTEGER PRIMARY KEY,
+	toilet_id SERIAL PRIMARY KEY,
 	block_id INTEGER NOT NULL,
 	toilet_status VARCHAR(15) DEFAULT 'Disabled',
 	FOREIGN KEY (block_id) REFERENCES toilet_block ON DELETE CASCADE);
 
 CREATE TABLE resident(
-	res_id INTEGER PRIMARY KEY,
+	res_id SERIAL PRIMARY KEY,
 	username VARCHAR(32) NOT NULL,
 	password VARCHAR(32) NOT NULL,
 	full_name VARCHAR(200) NOT NULL,
 	address VARCHAR(100) NOT NULL);
 
 CREATE TABLE farmer(
-	farmer_id INTEGER PRIMARY KEY,
+	farmer_id SERIAL PRIMARY KEY,
 	res_id INTEGER,
 	FOREIGN KEY (res_id) REFERENCES resident ON DELETE CASCADE);
 
