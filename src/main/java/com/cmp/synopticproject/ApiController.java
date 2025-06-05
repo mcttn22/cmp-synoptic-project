@@ -1,37 +1,37 @@
 package com.cmp.synopticproject;
 
-import java.util.List;
+import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * Class to handle REST API requests.
  */
 @RestController
 public class ApiController {
-	private ToiletBlockRepository toiletBlockRepository;
-	private ToiletRepository toiletRepository;
-	private ResidentRepository residentRepository;
-	private FarmerRepository farmerRepository;
-
-	public ApiController(ToiletBlockRepository toiletBlockRepository,
-					     ToiletRepository toiletRepository,
-						 ResidentRepository residentRepository,
-						 FarmerRepository farmerRepository) {
-		this.toiletBlockRepository = toiletBlockRepository;
-		this.toiletRepository = toiletRepository;
-		this.residentRepository = residentRepository;
-		this.farmerRepository = farmerRepository;
-	}
+	@Autowired ApiServices apiServices;
 
 	/**
-	 * Query database for all toilet entities.
-	 * @return a List of all toilet entities in the database.
+	 * Sign up a new resident to the database.
+	 * @return a ResponseEntity object.
 	 */
-	@GetMapping("/toilets")
-	public List<Toilet> getAllToilets () {
-		return this.toiletRepository.findAll();
+	@PostMapping("/signup/resident")
+	public ResponseEntity<HashMap<String, String>> signupResident (@RequestBody Resident resident) {
+		HashMap<String, String> responseData = new HashMap<String, String>();
+		if (apiServices.doesResidentExist(resident.getUsername())) {
+			responseData.put("message", "Resident already exists");
+			return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.BAD_REQUEST);
+		} else {
+			apiServices.signUpResident(resident);
+			responseData.put("message", "Resident signed up successfully");
+			return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
+		}
 	}
 }
 
