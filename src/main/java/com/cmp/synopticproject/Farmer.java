@@ -2,6 +2,7 @@ package com.cmp.synopticproject;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 /**
@@ -9,7 +10,7 @@ import jakarta.persistence.Id;
  */
 @Entity
 public class Farmer {
-	private @Id @GeneratedValue Integer farmerId;
+	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer farmerId;
 	private Integer resId;
 
 	public Integer getFarmerId () {

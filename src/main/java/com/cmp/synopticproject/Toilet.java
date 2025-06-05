@@ -2,6 +2,7 @@ package com.cmp.synopticproject;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 /**
@@ -9,7 +10,7 @@ import jakarta.persistence.Id;
  */
 @Entity
 public class Toilet {
-	private @Id @GeneratedValue Integer toiletId;
+	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer toiletId;
 	private Integer blockId;
 	private String toiletStatus;
 
@@ -17,7 +18,7 @@ public class Toilet {
 		return this.toiletId;
 	}
 
-	public void setToiletId (Integer id) {
+	public void setToiletId (Integer toiletId) {
 		this.toiletId = toiletId;
 	}
 
