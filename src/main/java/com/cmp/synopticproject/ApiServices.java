@@ -82,5 +82,22 @@ public class ApiServices {
 		}
 		return toiletBlockResponses;
 	}
+
+	/**
+	 * Check if toilet with given id exists in database.
+	 * @return true if it does otherwise false.
+	 */
+	public boolean doesToiletExist (Integer id) {
+		return toiletRepository.existsById(id);
+	}
+
+	/**
+	 * Update status of toilet with given id.
+	 */
+	public void updateToiletStatus (Integer id, String status) {
+		Toilet toilet = toiletRepository.findById(id).get();
+		toilet.setToiletStatus(status);
+		toiletRepository.save(toilet);
+	}
 }
 

@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -58,6 +60,23 @@ public class ApiController {
 	@GetMapping("/toiletblocks")
 	public ArrayList<ToiletBlockResponse> getToiletBlocks () {
 		return apiServices.getToiletBlockResponses();
+	}
+
+	/**
+	 * Update status of toilet by its id.
+	 * @return a ResponseEntity object.
+	 */
+	@PutMapping("/toilet/{id}")
+	public ResponseEntity<HashMap<String, String>> updateToiletStatus (@RequestBody ToiletStatusUpdate toiletStatusUpdate, @PathVariable Integer id) {
+		HashMap<String, String> responseData = new HashMap<String, String>();
+		if (apiServices.doesToiletExist(id)) {
+			apiServices.updateToiletStatus(id, toiletStatusUpdate.getToiletStatus());
+			responseData.put("message", "Toilet status successfully updated");
+			return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
+		} else {
+			responseData.put("message", String.format("Toilet %d does not exist", id));
+			return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.BAD_REQUEST);
+		}
 	}
 }
 
