@@ -36,5 +36,24 @@ public class ApiServices {
 	public void signUpResident (Resident resident) {
 		residentRepository.save(resident);
 	}
+
+	/**
+	 * Check if resident login details match resident in database.
+	 * @return true if success otherwise false.
+	 */
+	public boolean authenticateResident (ResidentLogin residentLogin) {
+		Resident resident = residentRepository.findByUsername(residentLogin.getUsername());
+		if (resident != null) {
+			System.out.println(resident.getPassword());
+			System.out.println(residentLogin.getPassword());
+			if (resident.getPassword().equals(residentLogin.getPassword())) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 }
 

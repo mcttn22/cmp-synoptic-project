@@ -33,5 +33,21 @@ public class ApiController {
 			return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
 		}
 	}
+
+	/**
+	 * Log in a resident.
+	 * @return a ResponseEntity object.
+	 */
+	@PostMapping("/login/resident")
+	public ResponseEntity<HashMap<String, String>> loginResident (@RequestBody ResidentLogin residentLogin) {
+		HashMap<String, String> responseData = new HashMap<String, String>();
+		if (apiServices.authenticateResident(residentLogin)) {
+			responseData.put("message", "Successfull login");
+			return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
+		} else {
+			responseData.put("message", "Unsuccessfull login");
+			return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.BAD_REQUEST);
+		}
+	}
 }
 
