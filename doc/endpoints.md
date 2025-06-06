@@ -35,7 +35,7 @@
   - HTTP method: GET
   - Response:
     - List of all toilet blocks and their toilets
-- "/toilet{id}"
+- "/toilet/{id}"
   - Description: Update status of toilet by its id
   - HTTP method: PUT
   - Expected JSON field names in request:
