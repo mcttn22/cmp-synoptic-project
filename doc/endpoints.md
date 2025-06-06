@@ -10,7 +10,7 @@
 
 ## API Endpoints
 
-- "/signup/resident"
+- "/api/signup/resident"
   - Description: Signs up new resident
   - HTTP method: POST
   - Expected JSON field names in request:
@@ -21,7 +21,7 @@
   - Response:
     - JSON object with message attribute
     - OK status on success
-- "/login/resident"
+- "/api/login/resident"
   - Description: Logs in resident
   - HTTP method: POST
   - Expected JSON field names in request:
@@ -30,12 +30,12 @@
   - Response:
     - JSON object with message attribute
     - OK status on success
-- "/toiletblocks"
+- "/api/toiletblocks"
   - Description: Gets list of all toilet blocks and their toilets
   - HTTP method: GET
   - Response:
     - List of all toilet blocks and their toilets
-- "/toilet/{id}"
+- "/api/toilet/{id}"
   - Description: Update status of toilet by its id
   - HTTP method: PUT
   - Expected JSON field names in request:
