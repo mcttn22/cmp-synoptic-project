@@ -1,4 +1,8 @@
-package com.cmp.synopticproject;
+package com.cmp.synopticproject.controller;
+
+import com.cmp.synopticproject.dto.*;
+import com.cmp.synopticproject.model.*;
+import com.cmp.synopticproject.service.*;
 
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -12,11 +16,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Class to handle REST API requests.
  */
 @RestController
+@RequestMapping("/api")
 public class ApiController {
 	@Autowired ApiServices apiServices;
 

@@ -1,4 +1,4 @@
-package com.cmp.synopticproject;
+package com.cmp.synopticproject.dto;
 
 /**
  * Class to represent resident login request body objects.

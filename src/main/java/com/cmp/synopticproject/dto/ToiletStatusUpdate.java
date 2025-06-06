@@ -1,4 +1,4 @@
-package com.cmp.synopticproject;
+package com.cmp.synopticproject.dto;
 
 /**
  * Class to represent request to update status of toilet.

@@ -1,4 +1,6 @@
-package com.cmp.synopticproject;
+package com.cmp.synopticproject.repository;
+
+import com.cmp.synopticproject.model.*;
 
 import java.util.List;
 

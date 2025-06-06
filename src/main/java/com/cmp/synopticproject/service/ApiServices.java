@@ -1,4 +1,8 @@
-package com.cmp.synopticproject;
+package com.cmp.synopticproject.service;
+
+import com.cmp.synopticproject.dto.*;
+import com.cmp.synopticproject.model.*;
+import com.cmp.synopticproject.repository.*;
 
 import java.util.ArrayList;
 
