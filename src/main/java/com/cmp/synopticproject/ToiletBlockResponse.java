@@ -1,19 +1,16 @@
 package com.cmp.synopticproject;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.util.ArrayList;
 
 /**
- * Class to represent toilet block entities in database via ORM.
+ * Class to represent response of getting toilet block.
  */
-@Entity
-public class ToiletBlock {
-	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer blockId;
+public class ToiletBlockResponse {
+	private Integer blockId;
 	private String blockAddress;
 	private String blockStatus;
 	private Integer toiletCount;
+	private ArrayList<Toilet> toilets;
 
 	public Integer getBlockId () {
 		return this.blockId;
@@ -45,6 +42,14 @@ public class ToiletBlock {
 
 	public void setToiletCount (Integer toiletCount) {
 		this.toiletCount = toiletCount;
+	}
+
+	public ArrayList<Toilet> getToilets () {
+		return this.toilets;
+	}
+
+	public void setToilets (ArrayList<Toilet> toilets) {
+		this.toilets = toilets;
 	}
 }
 

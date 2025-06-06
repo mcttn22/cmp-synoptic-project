@@ -1,6 +1,7 @@
 package com.cmp.synopticproject;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -48,6 +49,15 @@ public class ApiController {
 			responseData.put("message", "Unsuccessfull login");
 			return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.BAD_REQUEST);
 		}
+	}
+
+	/**
+	 * Get list of all toilet blocks and their toilets.
+	 * @return ArrayList of ToiletBlockResponse objects.
+	 */
+	@GetMapping("/toiletblocks")
+	public ArrayList<ToiletBlockResponse> getToiletBlocks () {
+		return apiServices.getToiletBlockResponses();
 	}
 }
 

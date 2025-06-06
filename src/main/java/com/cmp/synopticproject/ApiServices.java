@@ -1,5 +1,7 @@
 package com.cmp.synopticproject;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -54,6 +56,31 @@ public class ApiServices {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Create list of toilet block response objects.
+	 * @return ArrayList of toilet block response objects.
+	 */
+	public ArrayList<ToiletBlockResponse> getToiletBlockResponses () {
+		ArrayList<ToiletBlockResponse> toiletBlockResponses = new ArrayList<ToiletBlockResponse>();
+		for (ToiletBlock toiletBlock: toiletBlockRepository.findAll()) {
+			ToiletBlockResponse toiletBlockResponse = new ToiletBlockResponse();
+			toiletBlockResponse.setBlockId(toiletBlock.getBlockId());
+			toiletBlockResponse.setBlockAddress(toiletBlock.getBlockAddress());
+			toiletBlockResponse.setBlockStatus(toiletBlock.getBlockStatus());
+			toiletBlockResponse.setToiletCount(toiletBlock.getToiletCount());
+
+			// Add list of toilet block's toilets
+			ArrayList<Toilet> toilets = new ArrayList<Toilet>();
+			for (Toilet toilet: toiletRepository.findAllByBlockId(toiletBlock.getBlockId())) {
+				toilets.add(toilet);
+			}
+			toiletBlockResponse.setToilets(toilets);
+
+			toiletBlockResponses.add(toiletBlockResponse);
+		}
+		return toiletBlockResponses;
 	}
 }
 
