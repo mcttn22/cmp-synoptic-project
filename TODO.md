@@ -2,5 +2,4 @@
 
 - Backend
   - Provide necessary routing and query functions
-  - Add tests
 
