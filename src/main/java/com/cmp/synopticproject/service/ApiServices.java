@@ -32,7 +32,14 @@ public class ApiServices {
 	/**
 	 * Save resident to database.
 	 */
-	public void signUpResident (Resident resident) {
+	public void signUpResident (SignupRequest signupRequest) {
+
+		// Generate Resident object from signup request
+		Resident resident = new Resident();
+		resident.setUsername(signupRequest.getUsername());
+		resident.setEmail(signupRequest.getEmail());
+		resident.setPassword(signupRequest.getPassword());
+
 		if (residentRepository.existsByUsername(resident.getUsername())) {
 			throw new ResidentAlreadyExistsException("Resident already exists");
 		} else {
@@ -44,10 +51,42 @@ public class ApiServices {
 	 * Check if resident login details match resident in database.
 	 * @return true if success otherwise false.
 	 */
-	public void authenticateResident (ResidentLogin residentLogin) {
-		Resident resident = residentRepository.findByUsername(residentLogin.getUsername()).orElseThrow(() -> new ResidentDoesNotExistException("Resident does not exist"));
-		if (!(resident.getPassword().equals(residentLogin.getPassword()))) {
+	public void authenticateResident (LoginRequest loginRequest) {
+		Resident resident = residentRepository.findByUsername(loginRequest.getUsername()).orElseThrow(() -> new ResidentDoesNotExistException("Resident does not exist"));
+		if (!(resident.getPassword().equals(loginRequest.getPassword()))) {
 			throw new ResidentAuthenticationFailureException("Unsuccessfull login");
+		}
+	}
+
+	/**
+	 * Save farmer to database.
+	 */
+	public void signUpFarmer (SignupRequest signupRequest) {
+		signUpResident(signupRequest);
+
+		// Get saved resident entity
+		Resident resident = residentRepository.findByUsername(signupRequest.getUsername()).orElseThrow(() -> new ResidentDoesNotExistException("Resident does not exist"));
+		
+		// Generate Farmer object from signup request
+		Farmer farmer = new Farmer();
+		farmer.setResId(resident.getResId());
+
+		farmerRepository.save(farmer);
+	}
+
+	/**
+	 * Check if farmer login details match farmer in database.
+	 * @return true if success otherwise false.
+	 */
+	public void authenticateFarmer (LoginRequest loginRequest) {
+		authenticateResident(loginRequest);
+
+		// Get resident entity
+		Resident resident = residentRepository.findByUsername(loginRequest.getUsername()).orElseThrow(() -> new ResidentDoesNotExistException("Resident does not exist"));
+
+		// Check resident id exists in farmer entity
+		if (!(farmerRepository.existsByResId(resident.getResId()))) {
+			throw new FarmerAuthenticationFailiureException("Unsuccessfull login");
 		}
 	}
 

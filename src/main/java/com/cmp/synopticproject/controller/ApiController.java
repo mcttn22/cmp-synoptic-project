@@ -1,7 +1,7 @@
 package com.cmp.synopticproject.controller;
 
 import com.cmp.synopticproject.dto.*;
-import com.cmp.synopticproject.model.*;
+import com.cmp.synopticproject.exception.*;
 import com.cmp.synopticproject.service.*;
 
 import java.util.HashMap;
@@ -30,11 +30,17 @@ public class ApiController {
 	 * Sign up a new resident to the database.
 	 * @return a ResponseEntity object.
 	 */
-	@PostMapping("/signup/resident")
-	public ResponseEntity<HashMap<String, String>> signupResident (@RequestBody Resident resident) {
+	@PostMapping("/signup")
+	public ResponseEntity<HashMap<String, String>> signupResident (@RequestBody SignupRequest signupRequest) {
 		HashMap<String, String> responseData = new HashMap<String, String>();
-		apiServices.signUpResident(resident);
-		responseData.put("message", "Resident signed up successfully");
+		if (signupRequest.getUserType().equals("resident")) {
+			apiServices.signUpResident(signupRequest);
+		} else if (signupRequest.getUserType().equals("farmer")) {
+			apiServices.signUpFarmer(signupRequest);
+		} else {
+			throw new InvalidUserTypeException(String.format("%s is not a valid user type"));
+		}
+		responseData.put("message", "User signed up successfully");
 		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
 	}
 
@@ -42,10 +48,16 @@ public class ApiController {
 	 * Log in a resident.
 	 * @return a ResponseEntity object.
 	 */
-	@PostMapping("/login/resident")
-	public ResponseEntity<HashMap<String, String>> loginResident (@RequestBody ResidentLogin residentLogin) {
+	@PostMapping("/login")
+	public ResponseEntity<HashMap<String, String>> loginResident (@RequestBody LoginRequest loginRequest) {
 		HashMap<String, String> responseData = new HashMap<String, String>();
-		apiServices.authenticateResident(residentLogin);
+		if (loginRequest.getUserType().equals("resident")) {
+			apiServices.authenticateResident(loginRequest);
+		} else if (loginRequest.getUserType().equals("farmer")) {
+			apiServices.authenticateFarmer(loginRequest);
+		} else {
+			throw new InvalidUserTypeException(String.format("%s is not a valid user type"));
+		}
 		responseData.put("message", "Successfull login");
 		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
 	}

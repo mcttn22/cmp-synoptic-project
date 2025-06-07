@@ -1,11 +1,20 @@
 package com.cmp.synopticproject.dto;
 
 /**
- * Class to represent resident login request body objects.
+ * Class to represent login request body objects.
  */
-public class ResidentLogin {
+public class LoginRequest {
+	private String userType;
 	private String username;
 	private String password;
+
+	public String getUserType () {
+		return this.userType;
+	}
+
+	public void setUserType (String userType) {
+		this.userType = userType;
+	}
 
 	public String getUsername () {
 		return this.username;
