@@ -1,5 +1,7 @@
 package com.cmp.synopticproject.repository;
 
+import java.util.Optional;
+
 import com.cmp.synopticproject.model.*;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +11,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ResidentRepository extends JpaRepository<Resident, Integer> {
 	boolean existsByUsername (String username);
-	Resident findByUsername (String username);
+	Optional<Resident> findByUsername (String username);
 }
 
