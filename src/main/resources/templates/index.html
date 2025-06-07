@@ -14,10 +14,10 @@
             </header>
             <nav class = "navBar">
                 <ul class="showNav">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a class = "active" href="index">Home</a></li>
                     <li> <a href="#" onclick="document.getElementById('signupModal').style.display='block'">Sign Up</a></li>
                     <li><a href="#" onclick="document.getElementById('login').style.display='block'">Login</a></li>
-
+                    
                 </ul>
             </nav>
         <!-- Login Modal -->
@@ -25,7 +25,7 @@
             <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">&times;</span>
             <form class="modal-content animate" onsubmit="return loginRedirect(event)">
                 <div class="imgcontainer">
-                    <img src="login.jpg" alt="Avatar" class="avatar">
+                    <img src="assets/login.jpg" alt="Avatar" class="avatar">
                 </div>
                 <div class="container">
                     <label><b> Select User Type:</b></label>
@@ -58,7 +58,7 @@
             <span onclick="document.getElementById('signupModal').style.display='none'" class="close" title="Close Modal">&times;</span>
             <form class="modal-content animate" onsubmit="return handleSignUp(event)">
                 <div class="imgcontainer">
-                    <img src="login.jpg" alt="Avatar" class="avatar">
+                    <img src="assets/login.jpg" alt="Avatar" class="avatar">
                 </div>
                 <div class="container">
                     <label><b> Select User Type:</b></label>
@@ -84,14 +84,28 @@
                 </div>
             </form>
         </div>
-
         <main>
-            <h2> Our Mission</h2>
-            <p>We want to solve the issue of poor sanitation in Johannesburg specifically in Makers Valley by providing a solution that will allow more people access to cleaner and safer toilets.
-                While combatting the sewage issue, we also want to limit the chance of a cholera outbreak by using a composting toilet feature to produce fertiliser for plants.
-                In addition to this it will use renewable energy to avoid the effects of load shedding.
+    <div class="content-container">
+        <div class="text-section">
+            <h2>Our Mission</h2>
+            <p>
+                We want to solve the issue of poor sanitation in Johannesburg, specifically in Makers Valley, by providing a solution that gives more people access to cleaner and safer toilets.
+                While combating the sewage issue, we also aim to limit the chance of a cholera outbreak by using a composting toilet feature to produce fertilizer for plants.
+                Additionally, it will use renewable energy to operate independently of load shedding and ensure consistent functionality.
             </p>
-        </main>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="image-section">
+            <figure>
+                <img src="assets/compositingToilet.webp" alt="Mission Illustration">
+                <figcaption> Sustainable sanitation solution</figcaption>
+            </figure>
+        </div>
+    </div>
+</main>
+
         <!-- footer showing icons -->
         <footer>
             <p>&copy; Smart Toilets</p>
@@ -106,5 +120,3 @@
 
 </body>
 </html>
-
-
