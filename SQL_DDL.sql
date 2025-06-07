@@ -1,33 +1,33 @@
 -- Table Definition
-CREATE TABLE toiletBlock(
-	blockID SERIAL PRIMARY KEY,
-	blockAddress VARCHAR(100) NOT NULL,
-	blockStatus VARCHAR(15) DEFAULT 'Closed',
-	toiletCount INTEGER DEFAULT 0,
-	CHECK (toiletCount >= 0));
+CREATE TABLE toilet_block(
+	block_id SERIAL PRIMARY KEY,
+	block_address VARCHAR(100) NOT NULL,
+	block_status VARCHAR(15) DEFAULT 'Closed',
+	toilet_count INTEGER DEFAULT 0,
+	CHECK (toilet_count >= 0));
 
 CREATE TABLE toilet(
-	toiletID SERIAL PRIMARY KEY,
-	blockID INTEGER NOT NULL,
-	toiletStatus VARCHAR(15) DEFAULT 'Disabled',
-	FOREIGN KEY (blockID) REFERENCES toiletBlock ON DELETE CASCADE);
+	toilet_id SERIAL PRIMARY KEY,
+	block_id INTEGER NOT NULL,
+	toilet_status VARCHAR(15) DEFAULT 'Disabled',
+	FOREIGN KEY (block_id) REFERENCES toilet_block ON DELETE CASCADE);
 
 CREATE TABLE resident(
-	resID SERIAL PRIMARY KEY,
+	res_id SERIAL PRIMARY KEY,
 	username VARCHAR(32) NOT NULL,
 	password TEXT NOT NULL,
-	fullName VARCHAR(200) NOT NULL,
+	full_name VARCHAR(200) NOT NULL,
 	address VARCHAR(100) NOT NULL);
 
 CREATE TABLE farmer(
-	farmerID SERIAL PRIMARY KEY,
-	resID INTEGER,
-	FOREIGN KEY (resID) REFERENCES resident ON DELETE CASCADE);
+	farmer_id SERIAL PRIMARY KEY,
+	res_id INTEGER,
+	FOREIGN KEY (res_id) REFERENCES resident ON DELETE CASCADE);
 
 CREATE TABLE report(
-	reportID SERIAL PRIMARY KEY,
-	firstname VARCHAR(100) NOT NULL,
-	lastname VARCHAR(100) NOT NULL,
+	report_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(100) NOT NULL,
+	last_name VARCHAR(100) NOT NULL,
 	address VARCHAR(100) NOT NULL,
 	description TEXT NOT NULL);
 
@@ -35,9 +35,9 @@ CREATE TABLE report(
 CREATE OR REPLACE FUNCTION add_toilet_func()
 RETURNS TRIGGER AS $$
 BEGIN
-	UPDATE toiletBlock
-	SET toiletCount = toiletCount + 1
-	WHERE toiletBlock.blockID = NEW.blockID;
+	UPDATE toilet_block
+	SET toilet_count = toilet_count + 1
+	WHERE toilet_block.block_id = NEW.block_id;
 	RETURN NEW;
 END;
 $$
@@ -52,9 +52,9 @@ EXECUTE FUNCTION add_toilet_func();
 CREATE OR REPLACE FUNCTION remove_toilet_func()
 RETURNS TRIGGER AS $$
 BEGIN
-	UPDATE toiletblock
-	SET toiletCount = toiletCount - 1
-	WHERE toiletblock.blockID = OLD.blockID;
+	UPDATE toilet_block
+	SET toilet_count = toilet_count - 1
+	WHERE toilet_block.block_id = OLD.block_id;
 	RETURN OLD;
 END;
 $$
