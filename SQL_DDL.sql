@@ -27,6 +27,7 @@ CREATE TABLE report(
 	report_id SERIAL PRIMARY KEY,
 	first_name VARCHAR(100) NOT NULL,
 	last_name VARCHAR(100) NOT NULL,
+	email TEXT NOT NULL, 
 	block_address VARCHAR(100) NOT NULL,
 	description TEXT NOT NULL);
 

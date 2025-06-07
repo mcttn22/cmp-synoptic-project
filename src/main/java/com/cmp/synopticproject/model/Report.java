@@ -13,6 +13,7 @@ public class Report {
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer reportId;
 	private String firstName;
 	private String lastName;
+	private String email;
 	private String blockAddress;
 	private String description;
 
@@ -38,6 +39,14 @@ public class Report {
 
 	public void setLastName (String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getEmail () {
+		return this.email;
+	}
+
+	public void setEmail (String email) {
+		this.email = email;
 	}
 	
 	public String getBlockAddress () {
