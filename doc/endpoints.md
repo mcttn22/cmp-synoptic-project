@@ -10,21 +10,22 @@
 
 ## API Endpoints
 
-- "/api/signup/resident"
-  - Description: Signs up new resident
+- "/api/signup"
+  - Description: Signs up new resident or farmer
   - HTTP method: POST
   - Expected JSON field names in request:
+    - userType
     - username
+    - email
     - password
-    - fullName
-    - address
   - Response:
     - JSON object with message attribute
     - OK status on success
-- "/api/login/resident"
-  - Description: Logs in resident
+- "/api/login"
+  - Description: Logs in resident or farmer
   - HTTP method: POST
   - Expected JSON field names in request:
+    - userType
     - username
     - password
   - Response:
