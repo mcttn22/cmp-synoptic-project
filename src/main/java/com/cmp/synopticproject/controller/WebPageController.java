@@ -18,19 +18,51 @@ public class WebPageController {
 	}
 
 	/**
-	 * Render the ourGoal page.
+	 * Render the infoF page.
 	 */
-	@GetMapping("/ourGoal")
-	public String getOurgoal() {
-		return "ourGoal";
+	@GetMapping("/infoF")
+	public String getInfoF() {
+		return "infoF";
 	}
 
 	/**
-	 * Render the report page.
+	 * Render the infoR page.
 	 */
-	@GetMapping("/report")
-	public String getReport() {
-		return "report";
+	@GetMapping("/infoR")
+	public String getInfoR() {
+		return "infoR";
+	}
+
+	/**
+	 * Render the ourGoalF page.
+	 */
+	@GetMapping("/ourGoalF")
+	public String getOurgoalF() {
+		return "ourGoalF";
+	}
+
+	/**
+	 * Render the ourGoalR page.
+	 */
+	@GetMapping("/ourGoalR")
+	public String getOurgoalR() {
+		return "ourGoalR";
+	}
+
+	/**
+	 * Render the reportF page.
+	 */
+	@GetMapping("/reportF")
+	public String getReportF() {
+		return "reportF";
+	}
+
+	/**
+	 * Render the reportR page.
+	 */
+	@GetMapping("/reportR")
+	public String getReportR() {
+		return "reportR";
 	}
 
 	/**
