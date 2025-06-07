@@ -31,6 +31,18 @@
   - Response:
     - JSON object with message attribute
     - OK status on success
+- "api/reportissue"
+  - Description: Reports issue
+  - HTTP method: POST
+  - Expected JSON field names in request:
+    - firstName
+    - lastName
+    - email
+    - blockAddress
+    - description
+  - Response:
+    - JSON object with message attribute
+    - OK status on success
 - "/api/toiletblocks"
   - Description: Gets list of all toilet blocks and their toilets
   - HTTP method: GET
