@@ -25,13 +25,33 @@ public class SynopticprojectApplicationTests {
 	}
 
 	@Test
-	public void ourGoalShouldReturnOkStatus() throws Exception {
-		this.mockMvc.perform(get("/ourGoal")).andExpect(status().isOk());
+	public void infoFShouldReturnOkStatus() throws Exception {
+		this.mockMvc.perform(get("/infoF")).andExpect(status().isOk());
 	}
 
 	@Test
-	public void reportShouldReturnOkStatus() throws Exception {
-		this.mockMvc.perform(get("/report")).andExpect(status().isOk());
+	public void infoRShouldReturnOkStatus() throws Exception {
+		this.mockMvc.perform(get("/infoR")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void ourGoalFShouldReturnOkStatus() throws Exception {
+		this.mockMvc.perform(get("/ourGoalF")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void ourGoalRShouldReturnOkStatus() throws Exception {
+		this.mockMvc.perform(get("/ourGoalR")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void reportFShouldReturnOkStatus() throws Exception {
+		this.mockMvc.perform(get("/reportF")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void reportRShouldReturnOkStatus() throws Exception {
+		this.mockMvc.perform(get("/reportR")).andExpect(status().isOk());
 	}
 
 	@Test
