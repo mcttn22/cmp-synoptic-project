@@ -18,15 +18,18 @@ public class ApiServices {
 	private ToiletRepository toiletRepository;
 	private ResidentRepository residentRepository;
 	private FarmerRepository farmerRepository;
+	private ReportRepository reportRepository;
 
 	public ApiServices(ToiletBlockRepository toiletBlockRepository,
 					     ToiletRepository toiletRepository,
 						 ResidentRepository residentRepository,
-						 FarmerRepository farmerRepository) {
+						 FarmerRepository farmerRepository,
+						 ReportRepository reportRepository) {
 		this.toiletBlockRepository = toiletBlockRepository;
 		this.toiletRepository = toiletRepository;
 		this.residentRepository = residentRepository;
 		this.farmerRepository = farmerRepository;
+		this.reportRepository = reportRepository;
 	}
 
 	/**
@@ -88,6 +91,13 @@ public class ApiServices {
 		if (!(farmerRepository.existsByResId(resident.getResId()))) {
 			throw new FarmerAuthenticationFailiureException("Unsuccessfull login");
 		}
+	}
+
+	/**
+	 * Save report to database.
+	 */
+	public void reportIssue (Report report) {
+		reportRepository.save(report);
 	}
 
 	/**

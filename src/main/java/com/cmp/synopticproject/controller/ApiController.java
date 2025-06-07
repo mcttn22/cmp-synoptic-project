@@ -2,6 +2,7 @@ package com.cmp.synopticproject.controller;
 
 import com.cmp.synopticproject.dto.*;
 import com.cmp.synopticproject.exception.*;
+import com.cmp.synopticproject.model.*;
 import com.cmp.synopticproject.service.*;
 
 import java.util.HashMap;
@@ -59,6 +60,18 @@ public class ApiController {
 			throw new InvalidUserTypeException(String.format("%s is not a valid user type"));
 		}
 		responseData.put("message", "Successfull login");
+		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
+	}
+
+	/**
+	 * Report issue
+	 * @return a ResponseEntity object.
+	 */
+	@PostMapping("/reportissue")
+	public ResponseEntity<HashMap<String, String>> reportIssue (@RequestBody Report report) {
+		HashMap<String, String> responseData = new HashMap<String, String>();
+		apiServices.reportIssue(report);
+		responseData.put("message", "Issue successfully reported");
 		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
 	}
 
