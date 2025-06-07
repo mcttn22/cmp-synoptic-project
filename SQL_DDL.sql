@@ -15,9 +15,8 @@ CREATE TABLE toilet(
 CREATE TABLE resident(
 	res_id SERIAL PRIMARY KEY,
 	username VARCHAR(32) NOT NULL,
-	password TEXT NOT NULL,
-	full_name VARCHAR(200) NOT NULL,
-	address VARCHAR(100) NOT NULL);
+	email TEXT NOT NULL,
+	password TEXT NOT NULL);
 
 CREATE TABLE farmer(
 	farmer_id SERIAL PRIMARY KEY,
@@ -28,7 +27,7 @@ CREATE TABLE report(
 	report_id SERIAL PRIMARY KEY,
 	first_name VARCHAR(100) NOT NULL,
 	last_name VARCHAR(100) NOT NULL,
-	address VARCHAR(100) NOT NULL,
+	block_address VARCHAR(100) NOT NULL,
 	description TEXT NOT NULL);
 
 -- Adding a toilet

@@ -12,9 +12,8 @@ import jakarta.persistence.Id;
 public class Resident {
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer resId;
 	private String username;
+	private String email;
 	private String password;
-	private String fullName;
-	private String address;
 
 	public Integer getResId () {
 		return this.resId;
@@ -32,28 +31,20 @@ public class Resident {
 		this.username = username;
 	}
 
+	public String getEmail () {
+		return this.email;
+	}
+
+	public void setEmail (String email) {
+		this.email = email;
+	}
+
 	public String getPassword () {
 		return this.password;
 	}
 
 	public void setPassword (String password) {
 		this.password = password;
-	}
-
-	public String getFullName () {
-		return this.fullName;
-	}
-
-	public void setFullName (String fullName) {
-		this.fullName = fullName;
-	}
-
-	public String getAddress () {
-		return this.address;
-	}
-
-	public void setAddress (String address) {
-		this.address = address;
 	}
 }
 

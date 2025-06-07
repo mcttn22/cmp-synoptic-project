@@ -13,7 +13,7 @@ public class Report {
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer reportId;
 	private String firstName;
 	private String lastName;
-	private String address;
+	private String blockAddress;
 	private String description;
 
 	public Integer getReportId () {
@@ -40,12 +40,12 @@ public class Report {
 		this.lastName = lastName;
 	}
 	
-	public String getAddress () {
-		return this.address;
+	public String getBlockAddress () {
+		return this.blockAddress;
 	}
 
-	public void setAddress (String address) {
-		this.address = address;
+	public void setBlockAddress (String blockAddress) {
+		this.blockAddress = blockAddress;
 	}
 
 	public String getDescription () {
