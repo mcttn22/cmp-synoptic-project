@@ -33,14 +33,9 @@ public class ApiController {
 	@PostMapping("/signup/resident")
 	public ResponseEntity<HashMap<String, String>> signupResident (@RequestBody Resident resident) {
 		HashMap<String, String> responseData = new HashMap<String, String>();
-		if (apiServices.doesResidentExist(resident.getUsername())) {
-			responseData.put("message", "Resident already exists");
-			return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.BAD_REQUEST);
-		} else {
-			apiServices.signUpResident(resident);
-			responseData.put("message", "Resident signed up successfully");
-			return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
-		}
+		apiServices.signUpResident(resident);
+		responseData.put("message", "Resident signed up successfully");
+		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
 	}
 
 	/**
@@ -50,13 +45,9 @@ public class ApiController {
 	@PostMapping("/login/resident")
 	public ResponseEntity<HashMap<String, String>> loginResident (@RequestBody ResidentLogin residentLogin) {
 		HashMap<String, String> responseData = new HashMap<String, String>();
-		if (apiServices.authenticateResident(residentLogin)) {
-			responseData.put("message", "Successfull login");
-			return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
-		} else {
-			responseData.put("message", "Unsuccessfull login");
-			return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.BAD_REQUEST);
-		}
+		apiServices.authenticateResident(residentLogin);
+		responseData.put("message", "Successfull login");
+		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
 	}
 
 	/**
@@ -75,14 +66,9 @@ public class ApiController {
 	@PutMapping("/toilet/{id}")
 	public ResponseEntity<HashMap<String, String>> updateToiletStatus (@RequestBody ToiletStatusUpdate toiletStatusUpdate, @PathVariable Integer id) {
 		HashMap<String, String> responseData = new HashMap<String, String>();
-		if (apiServices.doesToiletExist(id)) {
-			apiServices.updateToiletStatus(id, toiletStatusUpdate.getToiletStatus());
-			responseData.put("message", "Toilet status successfully updated");
-			return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
-		} else {
-			responseData.put("message", String.format("Toilet %d does not exist", id));
-			return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.BAD_REQUEST);
-		}
+		apiServices.updateToiletStatus(id, toiletStatusUpdate.getToiletStatus());
+		responseData.put("message", "Toilet status successfully updated");
+		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
 	}
 }
 

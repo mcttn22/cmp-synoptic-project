@@ -1,6 +1,7 @@
 package com.cmp.synopticproject.service;
 
 import com.cmp.synopticproject.dto.*;
+import com.cmp.synopticproject.exception.*;
 import com.cmp.synopticproject.model.*;
 import com.cmp.synopticproject.repository.*;
 
@@ -29,36 +30,24 @@ public class ApiServices {
 	}
 
 	/**
-	 * Check if resident already exists in database.
-	 * @return true if resident already exists, otherwise false.
-	 */
-	public boolean doesResidentExist (String username) {
-		return residentRepository.existsByUsername(username);
-	}
-
-	/**
 	 * Save resident to database.
 	 */
 	public void signUpResident (Resident resident) {
-		residentRepository.save(resident);
+		if (residentRepository.existsByUsername(resident.getUsername())) {
+			throw new ResidentAlreadyExistsException("Resident already exists");
+		} else {
+			residentRepository.save(resident);
+		}
 	}
 
 	/**
 	 * Check if resident login details match resident in database.
 	 * @return true if success otherwise false.
 	 */
-	public boolean authenticateResident (ResidentLogin residentLogin) {
-		Resident resident = residentRepository.findByUsername(residentLogin.getUsername());
-		if (resident != null) {
-			System.out.println(resident.getPassword());
-			System.out.println(residentLogin.getPassword());
-			if (resident.getPassword().equals(residentLogin.getPassword())) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
+	public void authenticateResident (ResidentLogin residentLogin) {
+		Resident resident = residentRepository.findByUsername(residentLogin.getUsername()).orElseThrow(() -> new ResidentDoesNotExistException("Resident does not exist"));
+		if (!(resident.getPassword().equals(residentLogin.getPassword()))) {
+			throw new ResidentAuthenticationFailureException("Unsuccessfull login");
 		}
 	}
 
@@ -88,18 +77,10 @@ public class ApiServices {
 	}
 
 	/**
-	 * Check if toilet with given id exists in database.
-	 * @return true if it does otherwise false.
-	 */
-	public boolean doesToiletExist (Integer id) {
-		return toiletRepository.existsById(id);
-	}
-
-	/**
 	 * Update status of toilet with given id.
 	 */
 	public void updateToiletStatus (Integer id, String status) {
-		Toilet toilet = toiletRepository.findById(id).get();
+		Toilet toilet = toiletRepository.findById(id).orElseThrow(() -> new ToiletDoesNotExistException(String.format("Toilet %d does not exist", id)));
 		toilet.setToiletStatus(status);
 		toiletRepository.save(toilet);
 	}
