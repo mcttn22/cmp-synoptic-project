@@ -14,23 +14,19 @@
   - Description: Signs up new resident or farmer
   - HTTP method: POST
   - Expected JSON field names in request:
-    - userType
+    - userType: "resident" | "farmer"
     - username
     - email
     - password
   - Response:
     - JSON object with message attribute
     - OK status on success
-- "/api/login"
+- "/login"
   - Description: Logs in resident or farmer
   - HTTP method: POST
-  - Expected JSON field names in request:
-    - userType
+  - Expects HTML form with following elements and name attributes correspondingly:
     - username
     - password
-  - Response:
-    - JSON object with message attribute
-    - OK status on success
 - "api/reportissue"
   - Description: Reports issue
   - HTTP method: POST
