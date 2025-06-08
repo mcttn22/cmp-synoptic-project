@@ -10,8 +10,6 @@ window.onclick = function(event) {
 function loginRedirect(event) {
   event.preventDefault();
 
-  const username = document.querySelector('input[name="uname"]').value;
-  const password = document.querySelector('input[name="psw"]').value;
   const userType = document.querySelector('input[name="userType"]:checked');
 
   if (!userType) {
@@ -19,16 +17,33 @@ function loginRedirect(event) {
     return false;
   }
 
-  if (username === "admin" && password === "1234") {
-    alert("Login successful!");
-    if (userType.value === "farmer") {
-      window.location.href = "welcomeF";
-    } else {
-      window.location.href = "welcomeR";
-    }
-  } else {
-    alert("Invalid credentials.");
-  }
+	const form = event.target;
+	const formData = new FormData(form);
+
+	fetch("/login", {
+            method: "POST",
+            body: formData,
+        })
+        .then((response) => {
+			if (response.ok) {
+				return response;
+			} else {
+                throw error;
+            }
+        })
+        .then((response) => {
+			alert("Login successful!");
+			if (userType.value === "farmer") {
+				window.location.href = "welcomeF";
+			} else {
+				window.location.href = "welcomeR";
+			}
+		})
+        .catch((responseError) => {
+			
+            // Manage server failure response
+			alert("Invalid credentials.");
+        });
 
   return false;
 }
@@ -36,22 +51,41 @@ function loginRedirect(event) {
 function handleSignUp(event) {
     event.preventDefault();
 
-    const username = document.querySelector('input[name="newUser"]').value;
-    const email = document.querySelector('input[name="email"]').value;
-    const password = document.querySelector('input[name="newPsw"]').value;
-    const selectedType = document.querySelector('select[name="userType"]').value;
+  	const userType = document.querySelector('input[name="newUserType"]:checked').value;
+    const username = document.querySelector('input[name="newUsername"]').value;
+    const email = document.querySelector('input[name="newEmail"]').value;
+    const password = document.querySelector('input[name="newPassword"]').value;
 
-    if (username && email && password) {
-        alert("Sign-up successful!");
-        document.getElementById('signupModal').style.display = 'none';
-
-        if (selectedType === "farmer") {
-            window.location.href = "welcomeF";
-        } else {
-            window.location.href = "welcomeR";
-        }
-    } else {
-        alert("Please fill in all fields.");
-    }
+	const formBody = {
+			userType: userType,
+            username: username,
+            email: email,
+            password: password,
+        };
+        const requestHeaders = {"Content-Type": "application/json"};
+    
+        // Send POST request and manage server response
+        fetch("/api/signup", {
+            method: "POST",
+            headers: requestHeaders,
+            body: JSON.stringify(formBody),
+        })
+        .then((responseData) => {
+            if (responseData.ok) {
+                return responseData.json();
+            } else {
+                return responseData.json().then((error) => {
+                    throw error;
+                });
+            }
+        })
+        .then((responseData) => {
+            alert("Sign-up successful!");
+        	document.getElementById('signupModal').style.display = 'none';
+        })
+        .catch((responseError) => {
+            // Manage server failure response
+			 alert("Please fill in all fields.");
+        });
 }
 

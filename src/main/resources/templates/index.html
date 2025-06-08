@@ -24,7 +24,7 @@
         <!-- Login Modal -->
         <div id="login" class="modal">
             <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">&times;</span>
-            <form class="modal-content animate" method="post" action="/login">
+            <form class="modal-content animate" onsubmit="return loginRedirect(event)">
                 <div class="imgcontainer">
                     <img src="assets/login.jpg" alt="Avatar" class="avatar">
                 </div>
@@ -34,7 +34,7 @@
                         <input type="radio" name = "userType" value = "farmer"> Farmer
                         </label>
                     <label>
-                        <input type = "radio" name = "userType" value = "residence"> Residence
+                        <input type = "radio" name = "userType" value = "resident"> Resident
                     </label>
                     <label for="username"><b>Username</b></label>
                     <input type="text" placeholder="Enter Username" name="username" required>
@@ -64,19 +64,19 @@
                 <div class="container">
                     <label><b> Select User Type:</b></label>
                     <label> 
-                        <input type="radio" name = "farmer" value = "farmer"> Farmer
+                        <input type="radio" name = "newUserType" value = "farmer"> Farmer
                         </label>
                     <label>
-                        <input type = "radio" name = "residences" value = ""> Residences 
+                        <input type = "radio" name = "newUserType" value = "resident"> Resident
                     </label>
                     <label for="newUser"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="newUser" required>
+                    <input type="text" placeholder="Enter Username" name="newUsername" required>
 
                     <label for="email"><b>Email</b></label>
-                    <input type="email" placeholder="Enter Email" name="email" required>
+                    <input type="email" placeholder="Enter Email" name="newEmail" required>
 
                     <label for="newPsw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="newPsw" required>
+                    <input type="password" placeholder="Enter Password" name="newPassword" required>
 
                     <button type="submit">Sign Up</button>
                 </div>

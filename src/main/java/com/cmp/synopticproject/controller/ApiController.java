@@ -39,7 +39,7 @@ public class ApiController {
 		} else if (signupRequest.getUserType().equals("farmer")) {
 			apiServices.signUpFarmer(signupRequest);
 		} else {
-			throw new InvalidUserTypeException(String.format("%s is not a valid user type"));
+			throw new InvalidUserTypeException(String.format("%s is not a valid user type", signupRequest.getUserType()));
 		}
 		responseData.put("message", "User signed up successfully");
 		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
