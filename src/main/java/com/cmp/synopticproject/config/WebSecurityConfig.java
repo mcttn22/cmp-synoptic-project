@@ -43,8 +43,8 @@ public class WebSecurityConfig {
 					.successHandler((request, response, authentication) -> {
 						response.setStatus(HttpStatus.OK.value());
 					})
-					.failureHandler((request, response, authentication) -> {
-						response.setStatus(HttpStatus.BAD_REQUEST.value());
+					.failureHandler((request, response, exception) -> {
+						response.setStatus(HttpStatus.UNAUTHORIZED.value());
 					})
 					.permitAll()
 			)
