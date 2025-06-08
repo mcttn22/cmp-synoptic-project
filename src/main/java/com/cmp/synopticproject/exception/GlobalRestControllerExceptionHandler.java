@@ -33,29 +33,7 @@ public class GlobalRestControllerExceptionHandler {
 		HashMap<String, String> responseData = new HashMap<String, String>();
 		responseData.put("message", e.getMessage());
 		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.BAD_REQUEST);
-	}
-
-	/**
-	 * Handle ResidentAuthenticationFailure exception.
-	 * @return a ResponseEntity object.
-	 */
-	@ExceptionHandler(ResidentAuthenticationFailureException.class)
-	ResponseEntity<HashMap<String, String>> residentAuthenticationFailureHandler (ResidentAuthenticationFailureException e) {
-		HashMap<String, String> responseData = new HashMap<String, String>();
-		responseData.put("message", e.getMessage());
-		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.BAD_REQUEST);
-	}
-
-	/**
-	 * Handle FarmerAuthenticationFailure exception.
-	 * @return a ResponseEntity object.
-	 */
-	@ExceptionHandler(FarmerAuthenticationFailiureException.class)
-	ResponseEntity<HashMap<String, String>> farmerAuthenticationFailureHandler (FarmerAuthenticationFailiureException e) {
-		HashMap<String, String> responseData = new HashMap<String, String>();
-		responseData.put("message", e.getMessage());
-		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.BAD_REQUEST);
-	}
+	}	
 
 	/**
 	 * Handle ResidentDoesNotExist exception.
