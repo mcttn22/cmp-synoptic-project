@@ -82,6 +82,7 @@
 8. Open the project directory with a text editor (e.g., VS Code) and save a file called application.properties to src/main/resources/, with the following contents (replacing curly braces and their contents):
    - ```
      spring.application.name=synopticproject
+     server.port=8443
      spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
      spring.datasource.username=postgres
      spring.datasource.password={Database Password}
@@ -97,7 +98,7 @@ Start the web server with:
 - ```
   mvn spring-boot:run
   ```
-- The website will then be hosted at ```https://localhost:8080```
+- The website will then be hosted at ```https://localhost:8443```
   *Note: You will have to click through some options to accept the risk that we're self certificated*
 
 ## Development
