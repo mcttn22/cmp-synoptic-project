@@ -3,8 +3,12 @@
 ## Web Page Endpoints
 
 - "/index"
-- "/ourGoal"
-- "/report"
+- "/infoF"
+- "/infoR"
+- "/ourGoalF"
+- "/ourGoalR"
+- "/reportF"
+- "/reportR"
 - "/welcomeF"
 - "/welcomeR"
 
