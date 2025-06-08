@@ -7,6 +7,7 @@ import com.cmp.synopticproject.repository.*;
 
 import java.util.ArrayList;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,16 +21,21 @@ public class ApiServices {
 	private FarmerRepository farmerRepository;
 	private ReportRepository reportRepository;
 
+	private PasswordEncoder passwordEncoder;
+
 	public ApiServices(ToiletBlockRepository toiletBlockRepository,
 					     ToiletRepository toiletRepository,
 						 ResidentRepository residentRepository,
 						 FarmerRepository farmerRepository,
-						 ReportRepository reportRepository) {
+						 ReportRepository reportRepository,
+						 PasswordEncoder passwordEncoder) {
 		this.toiletBlockRepository = toiletBlockRepository;
 		this.toiletRepository = toiletRepository;
 		this.residentRepository = residentRepository;
 		this.farmerRepository = farmerRepository;
 		this.reportRepository = reportRepository;
+
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	/**
@@ -41,7 +47,9 @@ public class ApiServices {
 		Resident resident = new Resident();
 		resident.setUsername(signupRequest.getUsername());
 		resident.setEmail(signupRequest.getEmail());
-		resident.setPassword(signupRequest.getPassword());
+
+		// Encode password
+		resident.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
 
 		if (residentRepository.existsByUsername(resident.getUsername())) {
 			throw new ResidentAlreadyExistsException("Resident already exists");
