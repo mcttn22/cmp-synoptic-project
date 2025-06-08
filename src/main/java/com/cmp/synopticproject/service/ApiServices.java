@@ -7,6 +7,7 @@ import com.cmp.synopticproject.repository.*;
 
 import java.util.ArrayList;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,21 +19,38 @@ public class ApiServices {
 	private ToiletRepository toiletRepository;
 	private ResidentRepository residentRepository;
 	private FarmerRepository farmerRepository;
+	private ReportRepository reportRepository;
+
+	private PasswordEncoder passwordEncoder;
 
 	public ApiServices(ToiletBlockRepository toiletBlockRepository,
 					     ToiletRepository toiletRepository,
 						 ResidentRepository residentRepository,
-						 FarmerRepository farmerRepository) {
+						 FarmerRepository farmerRepository,
+						 ReportRepository reportRepository,
+						 PasswordEncoder passwordEncoder) {
 		this.toiletBlockRepository = toiletBlockRepository;
 		this.toiletRepository = toiletRepository;
 		this.residentRepository = residentRepository;
 		this.farmerRepository = farmerRepository;
+		this.reportRepository = reportRepository;
+
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	/**
 	 * Save resident to database.
 	 */
-	public void signUpResident (Resident resident) {
+	public void signUpResident (SignupRequest signupRequest) {
+
+		// Generate Resident object from signup request
+		Resident resident = new Resident();
+		resident.setUsername(signupRequest.getUsername());
+		resident.setEmail(signupRequest.getEmail());
+
+		// Encode password
+		resident.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
+
 		if (residentRepository.existsByUsername(resident.getUsername())) {
 			throw new ResidentAlreadyExistsException("Resident already exists");
 		} else {
@@ -41,14 +59,26 @@ public class ApiServices {
 	}
 
 	/**
-	 * Check if resident login details match resident in database.
-	 * @return true if success otherwise false.
+	 * Save farmer to database.
 	 */
-	public void authenticateResident (ResidentLogin residentLogin) {
-		Resident resident = residentRepository.findByUsername(residentLogin.getUsername()).orElseThrow(() -> new ResidentDoesNotExistException("Resident does not exist"));
-		if (!(resident.getPassword().equals(residentLogin.getPassword()))) {
-			throw new ResidentAuthenticationFailureException("Unsuccessfull login");
-		}
+	public void signUpFarmer (SignupRequest signupRequest) {
+		signUpResident(signupRequest);
+
+		// Get saved resident entity
+		Resident resident = residentRepository.findByUsername(signupRequest.getUsername()).orElseThrow(() -> new ResidentDoesNotExistException("Resident does not exist"));
+		
+		// Generate Farmer object from signup request
+		Farmer farmer = new Farmer();
+		farmer.setResId(resident.getResId());
+
+		farmerRepository.save(farmer);
+	}
+
+	/**
+	 * Save report to database.
+	 */
+	public void reportIssue (Report report) {
+		reportRepository.save(report);
 	}
 
 	/**

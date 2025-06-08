@@ -1,6 +1,7 @@
 package com.cmp.synopticproject.controller;
 
 import com.cmp.synopticproject.dto.*;
+import com.cmp.synopticproject.exception.*;
 import com.cmp.synopticproject.model.*;
 import com.cmp.synopticproject.service.*;
 
@@ -30,23 +31,29 @@ public class ApiController {
 	 * Sign up a new resident to the database.
 	 * @return a ResponseEntity object.
 	 */
-	@PostMapping("/signup/resident")
-	public ResponseEntity<HashMap<String, String>> signupResident (@RequestBody Resident resident) {
+	@PostMapping("/signup")
+	public ResponseEntity<HashMap<String, String>> signupResident (@RequestBody SignupRequest signupRequest) {
 		HashMap<String, String> responseData = new HashMap<String, String>();
-		apiServices.signUpResident(resident);
-		responseData.put("message", "Resident signed up successfully");
+		if (signupRequest.getUserType().equals("resident")) {
+			apiServices.signUpResident(signupRequest);
+		} else if (signupRequest.getUserType().equals("farmer")) {
+			apiServices.signUpFarmer(signupRequest);
+		} else {
+			throw new InvalidUserTypeException(String.format("%s is not a valid user type"));
+		}
+		responseData.put("message", "User signed up successfully");
 		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
 	}
 
 	/**
-	 * Log in a resident.
+	 * Report issue
 	 * @return a ResponseEntity object.
 	 */
-	@PostMapping("/login/resident")
-	public ResponseEntity<HashMap<String, String>> loginResident (@RequestBody ResidentLogin residentLogin) {
+	@PostMapping("/reportissue")
+	public ResponseEntity<HashMap<String, String>> reportIssue (@RequestBody Report report) {
 		HashMap<String, String> responseData = new HashMap<String, String>();
-		apiServices.authenticateResident(residentLogin);
-		responseData.put("message", "Successfull login");
+		apiServices.reportIssue(report);
+		responseData.put("message", "Issue successfully reported");
 		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
 	}
 

@@ -14,6 +14,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalRestControllerExceptionHandler {
 
 	/**
+	 * Handle InvalidUserType exception.
+	 * @return a ResponseEntity object.
+	 */
+	@ExceptionHandler(InvalidUserTypeException.class)
+	ResponseEntity<HashMap<String, String>> invalidUserTypeHandler (InvalidUserTypeException e) {
+		HashMap<String, String> responseData = new HashMap<String, String>();
+		responseData.put("message", e.getMessage());
+		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.BAD_REQUEST);
+	}
+
+	/**
 	 * Handle ResidentAlreadyExists exception.
 	 * @return a ResponseEntity object.
 	 */
@@ -22,18 +33,7 @@ public class GlobalRestControllerExceptionHandler {
 		HashMap<String, String> responseData = new HashMap<String, String>();
 		responseData.put("message", e.getMessage());
 		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.BAD_REQUEST);
-	}
-
-	/**
-	 * Handle ResidentAuthenticationFailure exception.
-	 * @return a ResponseEntity object.
-	 */
-	@ExceptionHandler(ResidentAuthenticationFailureException.class)
-	ResponseEntity<HashMap<String, String>> residentAuthenticationFailureHandler (ResidentAuthenticationFailureException e) {
-		HashMap<String, String> responseData = new HashMap<String, String>();
-		responseData.put("message", e.getMessage());
-		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.BAD_REQUEST);
-	}
+	}	
 
 	/**
 	 * Handle ResidentDoesNotExist exception.

@@ -1,26 +1,20 @@
-package com.cmp.synopticproject.model;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+package com.cmp.synopticproject.dto;
 
 /**
- * Class to represent resident entities in database via ORM.
+ * Class to represent signup request body objects.
  */
-@Entity
-public class Resident {
-	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer resId;
+public class SignupRequest {
+	private String userType;
 	private String username;
 	private String email;
 	private String password;
 
-	public Integer getResId () {
-		return this.resId;
+	public String getUserType () {
+		return this.userType;
 	}
 
-	public void setResId (Integer resId) {
-		this.resId = resId;
+	public void setUserType (String userType) {
+		this.userType = userType;
 	}
 
 	public String getUsername () {

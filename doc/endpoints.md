@@ -3,30 +3,43 @@
 ## Web Page Endpoints
 
 - "/index"
-- "/ourGoal"
-- "/report"
+- "/infoF"
+- "/infoR"
+- "/ourGoalF"
+- "/ourGoalR"
+- "/reportF"
+- "/reportR"
 - "/welcomeF"
 - "/welcomeR"
 
 ## API Endpoints
 
-- "/api/signup/resident"
-  - Description: Signs up new resident
+- "/api/signup"
+  - Description: Signs up new resident or farmer
   - HTTP method: POST
   - Expected JSON field names in request:
+    - userType: "resident" | "farmer"
     - username
+    - email
     - password
-    - fullName
-    - address
   - Response:
     - JSON object with message attribute
     - OK status on success
-- "/api/login/resident"
-  - Description: Logs in resident
+- "/login"
+  - Description: Logs in resident or farmer
   - HTTP method: POST
-  - Expected JSON field names in request:
+  - Expects HTML form with following elements and name attributes correspondingly:
     - username
     - password
+- "api/reportissue"
+  - Description: Reports issue
+  - HTTP method: POST
+  - Expected JSON field names in request:
+    - firstName
+    - lastName
+    - email
+    - blockAddress
+    - description
   - Response:
     - JSON object with message attribute
     - OK status on success

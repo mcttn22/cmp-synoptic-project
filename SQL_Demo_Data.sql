@@ -17,9 +17,9 @@ VALUES
 
 INSERT INTO resident
 VALUES
-(1001, 'ThembaN12', 'mypassword1', 'Themba Nkosi', '12 Silk Road, Makers Valley, Johannesburg'),
-(1002, 'Faina2131', '123456', 'Faina Arkaha', '32 Apple Tree Road, Makers Valley, Johannesburg'),
-(1003, 'XobileMawana', 'makersvalley-13', '!Xobile Mawana', '183 Cactus Crescent, Makers Valley, Johannesburg');
+(1001, 'ThembaN12', 'themba.nkosi@gmail.com', 'mypassword1'),
+(1002, 'Faina2131', 'faina.arkaha@gmail.com', '123456'),
+(1003, 'XobileMawana', 'xobile.mawana@gmail.com', 'makersvalley-13');
 
 INSERT INTO farmer
 VALUES
