@@ -23,7 +23,7 @@
         <!-- Login Modal -->
         <div id="login" class="modal">
             <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">&times;</span>
-            <form class="modal-content animate" onsubmit="return loginRedirect(event)">
+            <form class="modal-content animate" method="post" action="/login">
                 <div class="imgcontainer">
                     <img src="assets/login.jpg" alt="Avatar" class="avatar">
                 </div>
@@ -35,11 +35,11 @@
                     <label>
                         <input type = "radio" name = "userType" value = "residence"> Residence
                     </label>
-                    <label for="uname"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="uname" required>
+                    <label for="username"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="username" required>
 
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" required>
 
                     <button type="submit">Login</button>
                     <label>
