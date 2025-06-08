@@ -31,6 +31,8 @@
   - Expects HTML form with following elements and name attributes correspondingly:
     - username
     - password
+  - Response:
+    - OK status on success, UNAUTHORIZED status on failure
 - "api/reportissue"
   - Description: Reports issue
   - HTTP method: POST
