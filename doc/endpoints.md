@@ -32,7 +32,7 @@
     - username
     - password
   - Response:
-    - OK status on success, UNAUTHORIZED status on failure
+    - JSON object with role attribute ("ROLE_Farmer" | "ROLE_Resident") and OK status on success, UNAUTHORIZED status on failure
 - "api/reportissue"
   - Description: Reports issue
   - HTTP method: POST
