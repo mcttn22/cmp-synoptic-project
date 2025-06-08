@@ -51,17 +51,6 @@ public class ApiServices {
 	}
 
 	/**
-	 * Check if resident login details match resident in database.
-	 * @return true if success otherwise false.
-	 */
-	public void authenticateResident (LoginRequest loginRequest) {
-		Resident resident = residentRepository.findByUsername(loginRequest.getUsername()).orElseThrow(() -> new ResidentDoesNotExistException("Resident does not exist"));
-		if (!(resident.getPassword().equals(loginRequest.getPassword()))) {
-			throw new ResidentAuthenticationFailureException("Unsuccessfull login");
-		}
-	}
-
-	/**
 	 * Save farmer to database.
 	 */
 	public void signUpFarmer (SignupRequest signupRequest) {
@@ -75,22 +64,6 @@ public class ApiServices {
 		farmer.setResId(resident.getResId());
 
 		farmerRepository.save(farmer);
-	}
-
-	/**
-	 * Check if farmer login details match farmer in database.
-	 * @return true if success otherwise false.
-	 */
-	public void authenticateFarmer (LoginRequest loginRequest) {
-		authenticateResident(loginRequest);
-
-		// Get resident entity
-		Resident resident = residentRepository.findByUsername(loginRequest.getUsername()).orElseThrow(() -> new ResidentDoesNotExistException("Resident does not exist"));
-
-		// Check resident id exists in farmer entity
-		if (!(farmerRepository.existsByResId(resident.getResId()))) {
-			throw new FarmerAuthenticationFailiureException("Unsuccessfull login");
-		}
 	}
 
 	/**

@@ -46,24 +46,6 @@ public class ApiController {
 	}
 
 	/**
-	 * Log in a resident.
-	 * @return a ResponseEntity object.
-	 */
-	@PostMapping("/login")
-	public ResponseEntity<HashMap<String, String>> loginResident (@RequestBody LoginRequest loginRequest) {
-		HashMap<String, String> responseData = new HashMap<String, String>();
-		if (loginRequest.getUserType().equals("resident")) {
-			apiServices.authenticateResident(loginRequest);
-		} else if (loginRequest.getUserType().equals("farmer")) {
-			apiServices.authenticateFarmer(loginRequest);
-		} else {
-			throw new InvalidUserTypeException(String.format("%s is not a valid user type"));
-		}
-		responseData.put("message", "Successfull login");
-		return new ResponseEntity<HashMap<String, String>>(responseData, HttpStatus.OK);
-	}
-
-	/**
 	 * Report issue
 	 * @return a ResponseEntity object.
 	 */
