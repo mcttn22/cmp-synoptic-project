@@ -2,13 +2,6 @@
 function loginRedirect(event) {
 	event.preventDefault();
 
-	const userType = document.querySelector('input[name="userType"]:checked');
-
-	if (!userType) {
-    	alert("Please select a user type.");
-    	return false;
-	}
-
 	const form = event.target;
 	const formData = new FormData(form);
 
@@ -17,16 +10,18 @@ function loginRedirect(event) {
             method: "POST",
             body: formData,
         })
-        .then((response) => {
-			if (response.ok) {
-				return response;
+        .then((responseData) => {
+			if (responseData.ok) {
+				return responseData.json();
 			} else {
-                throw error;
+                return responseData.json().then((error) => {
+					throw error;
+				});
             }
         })
-        .then((response) => {
+        .then((responseData) => {
 			alert("Login successful!");
-			if (userType.value === "farmer") {
+			if (responseData.role === "ROLE_Farmer") {
 				window.location.href = "welcomeF";
 			} else {
 				window.location.href = "welcomeR";
