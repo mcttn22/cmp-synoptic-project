@@ -31,7 +31,7 @@ public class WebSecurityConfig {
 		httpSecurity.csrf(csrf -> csrf.disable());
 		return httpSecurity
 			.authorizeHttpRequests(authorise -> authorise
-					.requestMatchers("/", "/index", "/assets/**", "/*.css", "/*.js", "/api/signup").permitAll()
+					.requestMatchers("/", "/index", "/assets/**", "/*.css", "/scripts/**", "/api/signup").permitAll()
 					.requestMatchers("/infoF", "/ourGoalF", "/reportF", "/welcomeF").hasRole("Farmer")
 					.requestMatchers("/infoR", "/ourGoalR", "/reportR", "/welcomeR").hasRole("Resident")
 					.anyRequest().authenticated()
