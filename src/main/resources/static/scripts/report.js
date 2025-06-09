@@ -44,6 +44,7 @@ reportForm.addEventListener('submit',(e) => {
 
             console.log(responsedata);
             formInfo.textContent = responsedata.message
+			alert("Issue successfully reported!");
 
         })
 
