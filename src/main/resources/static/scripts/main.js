@@ -1,8 +1,11 @@
-let burger = document.querySelector('#burger');
-function shownav(){
-    document.querySelector('nav ul').classList.toggle('showNav');
-}
-if(burger){
-    burger.addEventListener('click', shownav);
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const burger = document.getElementById("burger");
+    const nav = document.querySelector("nav");
+
+    nav.classList.remove("showNav"); // hide on load
+
+    burger.addEventListener("click", () => {
+        nav.classList.toggle("showNav");
+    });
+});
 
