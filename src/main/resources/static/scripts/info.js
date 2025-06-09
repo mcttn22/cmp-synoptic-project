@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 
               //using color indicators to show the toiletStatus
               if(toilet.toiletStatus == "Vacant"){
-                td.style.backgroundColor = "green"
+                td.style.backgroundColor = "#90EE90"
               }else{
                 td.style.backgroundColor = "red"
               }
