@@ -1,39 +1,27 @@
-// Get the modal
-var modal = document.getElementById('login');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+// Submit login form and redirect according to user type
 function loginRedirect(event) {
-  event.preventDefault();
-
-  const userType = document.querySelector('input[name="userType"]:checked');
-
-  if (!userType) {
-    alert("Please select a user type.");
-    return false;
-  }
+	event.preventDefault();
 
 	const form = event.target;
 	const formData = new FormData(form);
 
+	// Send POST request and manage server response
 	fetch("/login", {
             method: "POST",
             body: formData,
         })
-        .then((response) => {
-			if (response.ok) {
-				return response;
+        .then((responseData) => {
+			if (responseData.ok) {
+				return responseData.json();
 			} else {
-                throw error;
+                return responseData.json().then((error) => {
+					throw error;
+				});
             }
         })
-        .then((response) => {
+        .then((responseData) => {
 			alert("Login successful!");
-			if (userType.value === "farmer") {
+			if (responseData.role === "ROLE_Farmer") {
 				window.location.href = "welcomeF";
 			} else {
 				window.location.href = "welcomeR";
@@ -45,9 +33,10 @@ function loginRedirect(event) {
 			alert("Invalid credentials.");
         });
 
-  return false;
+	return false;
 }
 
+// Submit signup form
 function handleSignUp(event) {
     event.preventDefault();
 
@@ -61,31 +50,32 @@ function handleSignUp(event) {
             username: username,
             email: email,
             password: password,
-        };
-        const requestHeaders = {"Content-Type": "application/json"};
-    
-        // Send POST request and manage server response
-        fetch("/api/signup", {
-            method: "POST",
-            headers: requestHeaders,
-            body: JSON.stringify(formBody),
-        })
-        .then((responseData) => {
-            if (responseData.ok) {
-                return responseData.json();
-            } else {
-                return responseData.json().then((error) => {
-                    throw error;
-                });
-            }
-        })
-        .then((responseData) => {
-            alert("Sign-up successful!");
-        	document.getElementById('signupModal').style.display = 'none';
-        })
-        .catch((responseError) => {
-            // Manage server failure response
-			 alert("Please fill in all fields.");
-        });
+    };
+	const requestHeaders = {"Content-Type": "application/json"};
+
+	// Send POST request and manage server response
+	fetch("/api/signup", {
+		method: "POST",
+		headers: requestHeaders,
+		body: JSON.stringify(formBody),
+	})
+	.then((responseData) => {
+		if (responseData.ok) {
+			return responseData.json();
+		} else {
+			return responseData.json().then((error) => {
+				throw error;
+			});
+		}
+	})
+	.then((responseData) => {
+		alert("Sign-up successful!");
+		document.getElementById('signupModal').style.display = 'none';
+	})
+	.catch((responseError) => {
+
+		// Manage server failure response
+		 alert(responseError.message);
+	});
 }
 

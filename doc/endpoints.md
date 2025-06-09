@@ -31,6 +31,8 @@
   - Expects HTML form with following elements and name attributes correspondingly:
     - username
     - password
+  - Response:
+    - JSON object with role attribute ("ROLE_Farmer" | "ROLE_Resident") and OK status on success, UNAUTHORIZED status on failure
 - "api/reportissue"
   - Description: Reports issue
   - HTTP method: POST

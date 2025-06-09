@@ -15,12 +15,3 @@ VALUES
 (9032, 303, 'Vacant'),
 (9041, 404, 'Disabled');
 
-INSERT INTO resident
-VALUES
-(1001, 'ThembaN12', 'themba.nkosi@gmail.com', 'mypassword1'),
-(1002, 'Faina2131', 'faina.arkaha@gmail.com', '123456'),
-(1003, 'XobileMawana', 'xobile.mawana@gmail.com', 'makersvalley-13');
-
-INSERT INTO farmer
-VALUES
-(9991, 1001);
