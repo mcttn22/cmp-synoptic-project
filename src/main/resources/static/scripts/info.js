@@ -1,5 +1,7 @@
 let infoPage = document.querySelector("#mainInfo");
 
+infoPage.style.paddingTop = "20px"
+
 //fetch data from the database using the api
 document.addEventListener('DOMContentLoaded', ()=>{
     fetch('/api/toiletblocks')
@@ -14,6 +16,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const blockHeader = document.createElement('h3');
         blockHeader.textContent = `Block ID: ${block.blockId} | Address: ${block.blockAddress} | Status: ${block.blockStatus} | Toilets: ${block.toiletCount}`;
         container.appendChild(blockHeader);
+        
 
         //creating the table
         const table = document.createElement('table');
@@ -29,7 +32,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
           const th = document.createElement('th');
           th.textContent = headerText;
           //css styles for the table header row
-          th.style.border = "1px solid #ccc";
+          th.style.fontSize = "22px";
+          th.style.border = "4px solid #ccc";
           th.style.padding = "8px";
           th.style.backgroundColor = "#0096C7"; //blue bg with black fg
           headerRow.appendChild(th);
@@ -50,7 +54,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
               td.textContent = celltext;
               //css styles for the rows and columns
-              td.style.border = "1px solid #ccc";
+              td.style.fontSize = "25px";
+              td.style.border = "4px solid #ccc";
               td.style.padding = "8px";
               td.style.backgroundColor = "#bcc8d0";
               row.appendChild(td);
@@ -71,7 +76,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
           td.colSpan = 3;
           td.textContent = "No toilets available in this block.";
           //css styles for the rows and columns
-          td.style.border = "1px solid #ccc";
+          td.style.fontSize = "23px";
+          td.style.border = "4px solid #ccc";
           td.style.padding = "8px";
           td.style.textAlign = "center";
           td.style.backgroundColor = "#bcc8d0";
