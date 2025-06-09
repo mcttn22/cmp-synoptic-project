@@ -40,7 +40,7 @@ public class Toilet {
 	}
 
 	public String getCompostStatus () {
-		return this.toiletStatus;
+		return this.compostStatus;
 	}
 
 	public void setCompostStatus (String compostStatus) {
