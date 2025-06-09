@@ -7,11 +7,11 @@ VALUES
 
 INSERT INTO toilet
 VALUES
-(9011, 101, 'Vacant'),
-(9012, 101, 'Vacant'),
-(9013, 101, 'Disabled'),
-(9014, 101, 'Disabled'),
-(9031, 303, 'Vacant'),
-(9032, 303, 'Vacant'),
-(9041, 404, 'Disabled');
+(9011, 101, 'Vacant', 'Not ready'),
+(9012, 101, 'Vacant', 'Not ready'),
+(9013, 101, 'Disabled', 'Ready'),
+(9014, 101, 'Disabled', 'Ready'),
+(9031, 303, 'Vacant', 'Not ready'),
+(9032, 303, 'Vacant', 'Not ready'),
+(9041, 404, 'Disabled', 'Not ready');
 

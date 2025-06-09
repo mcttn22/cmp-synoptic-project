@@ -13,6 +13,7 @@ public class Toilet {
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Integer toiletId;
 	private Integer blockId;
 	private String toiletStatus;
+	private String compostStatus;
 
 	public Integer getToiletId () {
 		return this.toiletId;
@@ -36,6 +37,14 @@ public class Toilet {
 
 	public void setToiletStatus (String toiletStatus) {
 		this.toiletStatus = toiletStatus;
+	}
+
+	public String getCompostStatus () {
+		return this.toiletStatus;
+	}
+
+	public void setCompostStatus (String compostStatus) {
+		this.compostStatus = compostStatus;
 	}
 }
 

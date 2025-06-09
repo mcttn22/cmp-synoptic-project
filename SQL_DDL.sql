@@ -10,6 +10,7 @@ CREATE TABLE toilet(
 	toilet_id SERIAL PRIMARY KEY,
 	block_id INTEGER NOT NULL,
 	toilet_status VARCHAR(15) DEFAULT 'Disabled',
+	compost_status VARCHAR (15) DEFAULT 'Not ready',
 	FOREIGN KEY (block_id) REFERENCES toilet_block ON DELETE CASCADE);
 
 CREATE TABLE resident(
