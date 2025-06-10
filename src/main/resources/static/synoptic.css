@@ -36,6 +36,10 @@ header {
     background-color:#b8bbc7;
     height: 10%;
 }
+label{
+  display:block;
+  margin-bottom: 10px;
+}
 
 nav {
     border:#333;
