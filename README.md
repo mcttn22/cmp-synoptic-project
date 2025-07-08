@@ -8,18 +8,18 @@ Group project designed and developed for Engineering for People Design Challenge
 
 ## Installation
 
-2. Download the Repository with:
+1. Download the Repository with:
     - ```
       git clone https://github.com/mcttn22/cmp-synoptic-project.git
       ```
     - Or by downloading as a ZIP file
 
-3. Enter the project directory with:
+2. Enter the project directory with:
     - ```
       cd cmp-synoptic-project
       ```
 
-4. Create a keystore for HTTPS with the following:
+3. Create a keystore for HTTPS with the following:
    - ```
      openssl req -x509 -newkey rsa:2048 -keyout keytmp.pem -out cert.pem -days 365 -nodes;
      openssl rsa -in keytmp.pem -out key.pem;
@@ -28,13 +28,13 @@ Group project designed and developed for Engineering for People Design Challenge
    - You will be prompted to fill in information for the certificate and a password for the keystore. See the below demo:
      ![OpenSSL Demo](https://github.com/mcttn22/cmp-synoptic-project/blob/main/doc/openssl-demo.png?raw=true)
 
-5. Setup the database with:
+4. Setup the database with:
    - ```psql -U postgres postgres```
    - Once in the command line interface, enter ```\i SQL_DDL.sql```
    - Then enter ```COMMIT;``` to commit the changes
    - Then enter ```\q``` to exit the command line interface
 
-6. Add a file called application.properties to src/main/resources/, with the following contents:
+5. Add a file called application.properties to src/main/resources/, with the following contents:
    - ```
      spring.application.name=synopticproject
      server.port=8443
